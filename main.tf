@@ -1,17 +1,3 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 4.0"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-  subscription_id = "e10b0631-fc46-4ab7-878e-2852bbda236f"
-}
-
 resource "azurerm_resource_group" "rg" {
   name     = "rg-demo-terraform"
   location = "westeurope"
@@ -105,9 +91,4 @@ resource "azurerm_linux_virtual_machine" "vm" {
     sku       = "22_04-lts-gen2"
     version   = "latest"
   }
-}
-
-output "vm_public_ip" {
-  description = "External IP of the virtual machine"
-  value       = azurerm_public_ip.pip.ip_address
 }
