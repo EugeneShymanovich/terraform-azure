@@ -9,5 +9,6 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = "e10b0631-fc46-4ab7-878e-2852bbda236f"
+  # subscription_id is picked up from the ARM_SUBSCRIPTION_ID env var
+  # (set via GitHub Actions secrets / OIDC, or export it locally)
 }
