@@ -41,6 +41,17 @@ resource "azurerm_network_security_group" "nsg" {
     source_address_prefix      = "*"        # для тестов; потом лучше ограничить своим IP
     destination_address_prefix = "*"
   }
+  security_rule {
+    name                       = "allow-udp-40273"
+    priority                   = 110            # другое число, уникальное в NSG
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Udp"         # вот тут отличие от SSH
+    source_port_range          = "*"
+    destination_port_range     = "40273"
+    source_address_prefix      = "*"           # для тестов; потом лучше сузить
+    destination_address_prefix = "*"
+  }
 }
 
 resource "azurerm_network_interface" "nic" {
